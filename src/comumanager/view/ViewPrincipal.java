@@ -19,8 +19,8 @@ public class ViewPrincipal extends javax.swing.JFrame {
      */
     public Model model;
     
-    public ViewPrincipal(Model model) {
-        this.model = model;
+    public ViewPrincipal() {
+        this.model = Model.getInstance();
         initComponents();
         jSplitPane1.setRightComponent(new ViewConsulta());
         this.setLocationRelativeTo(null);

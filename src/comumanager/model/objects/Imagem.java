@@ -3,24 +3,28 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package comumanager.model;
+package comumanager.model.objects;
+
+import java.sql.Date;
 
 /**
  *
  * @author lucas
  */
-public class Entrevistado {
+public class Imagem {
     private int id;
     private String nome;
-    private float lat;
-    private float lon;
+    private String path;
+    private Date data;
+    private boolean publico;
     private int comu_id;
 
-    public Entrevistado(int id, String nome, float lat, float lon, int comu_id) {
+    public Imagem(int id, String nome, String path, Date data, boolean publico, int comu_id) {
         this.id = id;
         this.nome = nome;
-        this.lat = lat;
-        this.lon = lon;
+        this.path = path;
+        this.data = data;
+        this.publico = publico;
         this.comu_id = comu_id;
     }
 
@@ -40,20 +44,28 @@ public class Entrevistado {
         this.nome = nome;
     }
 
-    public float getLat() {
-        return lat;
+    public String getPath() {
+        return path;
     }
 
-    public void setLat(float lat) {
-        this.lat = lat;
+    public void setPath(String path) {
+        this.path = path;
     }
 
-    public float getLon() {
-        return lon;
+    public Date getData() {
+        return data;
     }
 
-    public void setLon(float lon) {
-        this.lon = lon;
+    public void setData(Date data) {
+        this.data = data;
+    }
+
+    public boolean isPublico() {
+        return publico;
+    }
+
+    public void setPublico(boolean publico) {
+        this.publico = publico;
     }
 
     public int getComu_id() {
@@ -64,8 +76,8 @@ public class Entrevistado {
         this.comu_id = comu_id;
     }
     
-    @Override
+     @Override
     public String toString(){
-        return "["+id +","+nome+","+lat+","+lon+","+comu_id+"]";
+        return "["+id +","+nome+","+path+","+data+","+publico+","+comu_id+"]";
     }
 }

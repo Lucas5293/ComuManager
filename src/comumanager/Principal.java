@@ -22,7 +22,7 @@ public class Principal {
         
         Model model = Model.getInstance();
         
-        new ViewPrincipal(model).setVisible(true);
+        new ViewPrincipal().setVisible(true);
     }
     public static void print(ArrayList k){
         for (Object a: k)

@@ -5,8 +5,9 @@
  */
 package comumanager.model;
 
-import comumanager.ControladorDatabase;
+
 import comumanager.Principal;
+import comumanager.control.ControladorDB;
 import java.io.IOException;
 import java.sql.SQLException;
 import org.junit.Before;
@@ -22,7 +23,7 @@ public class DatabaseTest {
     private Database database;
     @Before
     public void setUp() throws IOException{
-        database = new ControladorDatabase().conectar();
+        database = ControladorDB.getInstance().getDatabase();
     }
     
     @Test

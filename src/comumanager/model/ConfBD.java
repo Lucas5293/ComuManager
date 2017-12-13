@@ -27,29 +27,43 @@ public class ConfBD {
             gravarArq.println(info.get("port"));
             gravarArq.println(info.get("db"));
             gravarArq.println(info.get("user"));
-            gravarArq.println(info.get("pass"));
+            gravarArq.print(info.get("pass"));
             
             arq.close();
         }
     }
     
-    public Map<String, String> getConf() throws FileNotFoundException, IOException{
+    public Map<String, String> getConf() throws IOException{
         Map<String, String> retorno = new HashMap<>();
         String texto;
-        FileReader fileR = new FileReader ("conf.cfg");
-        BufferedReader buffR = new BufferedReader (fileR);
-        int cont = 0;
-        while ((texto = buffR.readLine ()) != null){
-            String key="";
-            switch(cont){
-                case 0: {key = "host"; break;}
-                case 1: {key = "port"; break;}
-                case 2: {key = "db"; break;}
-                case 3: {key = "user"; break;}
-                case 4: {key = "pass"; break;}
+        try{
+            FileReader fileR = new FileReader ("conf.cfg");
+            BufferedReader buffR = new BufferedReader (fileR);
+            int cont = 0;
+            while ((texto = buffR.readLine ()) != null){
+                String key="";
+                switch(cont){
+                    case 0: {key = "host"; break;}
+                    case 1: {key = "port"; break;}
+                    case 2: {key = "db"; break;}
+                    case 3: {key = "user"; break;}
+                    case 4: {key = "pass"; break;}
+                }
+                retorno.put(key, texto);
+                cont++;
             }
-            retorno.put(key, texto);
-            cont++;
+        }
+        catch(Exception e){
+            try (FileWriter arq = new FileWriter("conf.cfg")) {
+                PrintWriter gravarArq = new PrintWriter(arq);
+                arq.close();
+                
+                retorno.put("host","");
+                retorno.put("port","");
+                retorno.put("db","");
+                retorno.put("user","");
+                retorno.put("pass","");                
+            }
         }
         return retorno;
     }

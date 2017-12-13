@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package comumanager.model;
+package comumanager.model.objects;
 
 /**
  *
  * @author lucas
  */
-class Resposta {
+public class Resposta {
     private int id;
     private int perg_id;
     private boolean resp_boleano;

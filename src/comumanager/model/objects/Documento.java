@@ -3,29 +3,27 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package comumanager.model;
-
-import java.sql.Date;
+package comumanager.model.objects;
 
 /**
  *
  * @author lucas
  */
-class Imagem {
+public class Documento {
     private int id;
     private String nome;
     private String path;
-    private Date data;
     private boolean publico;
-    private int comu_id;
+    private int ext_id;
+    private String tipo;
 
-    public Imagem(int id, String nome, String path, Date data, boolean publico, int comu_id) {
+    public Documento(int id, String nome, String path, boolean publico, int ext_id, String tipo) {
         this.id = id;
         this.nome = nome;
         this.path = path;
-        this.data = data;
         this.publico = publico;
-        this.comu_id = comu_id;
+        this.ext_id = ext_id;
+        this.tipo = tipo;
     }
 
     public int getId() {
@@ -52,14 +50,6 @@ class Imagem {
         this.path = path;
     }
 
-    public Date getData() {
-        return data;
-    }
-
-    public void setData(Date data) {
-        this.data = data;
-    }
-
     public boolean isPublico() {
         return publico;
     }
@@ -68,16 +58,26 @@ class Imagem {
         this.publico = publico;
     }
 
-    public int getComu_id() {
-        return comu_id;
+    public int getExt_id() {
+        return ext_id;
     }
 
-    public void setComu_id(int comu_id) {
-        this.comu_id = comu_id;
+    public void setExt_id(int ext_id) {
+        this.ext_id = ext_id;
     }
-    
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
      @Override
     public String toString(){
-        return "["+id +","+nome+","+path+","+data+","+publico+","+comu_id+"]";
+        return "["+id +","+nome+","+path+","+publico+","+ext_id+","+tipo+"]";
     }
+    
+    
 }

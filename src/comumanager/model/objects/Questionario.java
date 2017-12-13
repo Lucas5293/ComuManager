@@ -3,25 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package comumanager.model;
-
-import java.sql.Date;
+package comumanager.model.objects;
 
 /**
  *
  * @author lucas
  */
-public class Raster {
+public class Questionario {
     private int id;
-    private String path;
-    private Date data;
+    private String nome;
     private int pesq_id;
+    private boolean publico;
 
-    public Raster(int id, String path, Date data, int pesq_id) {
+    public Questionario(int id, String nome, int pesq_id, boolean publico) {
         this.id = id;
-        this.path = path;
-        this.data = data;
+        this.nome = nome;
         this.pesq_id = pesq_id;
+        this.publico = publico;
     }
 
     public int getId() {
@@ -32,20 +30,12 @@ public class Raster {
         this.id = id;
     }
 
-    public String getPath() {
-        return path;
+    public String getNome() {
+        return nome;
     }
 
-    public void setPath(String path) {
-        this.path = path;
-    }
-
-    public Date getData() {
-        return data;
-    }
-
-    public void setData(Date data) {
-        this.data = data;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public int getPesq_id() {
@@ -55,12 +45,18 @@ public class Raster {
     public void setPesq_id(int pesq_id) {
         this.pesq_id = pesq_id;
     }
+
+    public boolean isPublico() {
+        return publico;
+    }
+
+    public void setPublico(boolean publico) {
+        this.publico = publico;
+    }
     
     @Override
     public String toString(){
-        return "["+id +","+path+","+data+","+pesq_id+"]";
+        return "["+id +","+nome+","+pesq_id+","+publico+"]";
     }
-    
-    
     
 }

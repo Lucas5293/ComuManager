@@ -5,6 +5,15 @@
  */
 package comumanager.model;
 
+import comumanager.model.objects.Documento;
+import comumanager.model.objects.Comunidade;
+import comumanager.model.objects.Entrevistado;
+import comumanager.model.objects.Pesquisa;
+import comumanager.model.objects.Imagem;
+import comumanager.model.objects.Pergunta;
+import comumanager.model.objects.Questionario;
+import comumanager.model.objects.Raster;
+import comumanager.model.objects.Resposta;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -34,6 +43,9 @@ public class Database {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
         }
         
+    }
+    public void close() throws SQLException{
+        c.close();
     }
     public ArrayList<Pesquisa> selectPesquisa(String query) throws SQLException {
         ArrayList<Pesquisa> pesquisas = new ArrayList<>();
