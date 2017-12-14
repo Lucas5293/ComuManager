@@ -71,13 +71,13 @@ public class DatabaseTest {
     @Test
     public void selectDocumentoTest() throws SQLException{
         assertNotNull(database.selectDocumento("select * from documentospesquisa"));
-        Principal.print(database.selectDocumento("select * from documentospesquisa"));
+        //Principal.print(database.selectDocumento("select * from documentospesquisa"));
     }
     
        @Test
     public void selectRasterTest() throws SQLException{
         assertNotNull(database.selectRaster("select * from pesquisaraster"));
-        Principal.print(database.selectRaster("select * from pesquisaraster"));
+        //Principal.print(database.selectRaster("select * from pesquisaraster"));
     }
    
    

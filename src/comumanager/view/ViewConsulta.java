@@ -5,6 +5,9 @@
  */
 package comumanager.view;
 
+import comumanager.control.consulta.ControladorConPesquisa;
+import comumanager.control.consulta.ControladorConQuestionario;
+import comumanager.model.Model;
 import comumanager.view.consulta.ViewConAnexo;
 import comumanager.view.consulta.ViewConPergunta;
 import comumanager.view.consulta.ViewConComunidade;
@@ -12,6 +15,9 @@ import comumanager.view.consulta.ViewConEntrevistado;
 import comumanager.view.consulta.ViewConPesquisa;
 import comumanager.view.consulta.ViewConQuestionario;
 import comumanager.view.consulta.ViewConResposta;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -22,15 +28,27 @@ public class ViewConsulta extends javax.swing.JPanel {
     /**
      * Creates new form ViewConsulta
      */
-    public ViewConsulta() {
+    Model model;
+    
+    public ViewConsulta() throws IOException {
         initComponents();
-        jTabbedPane1.addTab("Pesquisa", new ViewConPesquisa());
-        jTabbedPane1.addTab("Questionário", new ViewConQuestionario());
+        this.model = Model.getInstance();
+        
+        ViewConPesquisa viewConPesquisa = new ViewConPesquisa();
+        ViewConQuestionario viewConQuestionario = new ViewConQuestionario();
+        
+        jTabbedPane1.addTab("Pesquisa", viewConPesquisa);
+        jTabbedPane1.addTab("Questionário", viewConQuestionario);
         jTabbedPane1.addTab("Comunidade", new ViewConComunidade());
         jTabbedPane1.addTab("Entrevistado", new ViewConEntrevistado());
         jTabbedPane1.addTab("Pergunta", new ViewConPergunta());
         jTabbedPane1.addTab("Resposta", new ViewConResposta());
         jTabbedPane1.addTab("Anexo", new ViewConAnexo());
+        
+        model.registerObserver(viewConPesquisa);
+        model.registerObserver(viewConQuestionario);
+        
+        model.notifyObservers(new ControladorConPesquisa().getAll());
     }
 
     /**
@@ -46,6 +64,11 @@ public class ViewConsulta extends javax.swing.JPanel {
 
         jTabbedPane1.setBackground(java.awt.Color.white);
         jTabbedPane1.setFont(new java.awt.Font("Fira Sans", 0, 15)); // NOI18N
+        jTabbedPane1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jTabbedPane1StateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -64,6 +87,15 @@ public class ViewConsulta extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTabbedPane1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane1StateChanged
+        try {
+            model.notifyObservers(new ControladorConPesquisa().getAll());
+            model.notifyObservers(new ControladorConQuestionario().getAll());
+        } catch (IOException ex) {
+            Logger.getLogger(ViewConsulta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jTabbedPane1StateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

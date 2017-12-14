@@ -5,6 +5,8 @@
  */
 package comumanager.view.consulta;
 
+import comumanager.model.objects.Questionarios;
+import comumanager.view.Observer;
 import java.text.NumberFormat;
 import javax.swing.JFormattedTextField;
 import javax.swing.table.DefaultTableModel;
@@ -14,7 +16,7 @@ import javax.swing.text.NumberFormatter;
  *
  * @author lucas
  */
-public class ViewConQuestionario extends javax.swing.JPanel {
+public class ViewConQuestionario extends javax.swing.JPanel implements Observer{
 
     /**
      * Creates new form ViewConQuestionario
@@ -130,4 +132,15 @@ public class ViewConQuestionario extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void update(Object object) {
+        if (object.getClass() == Questionarios.class){
+            modelo.setRowCount(0);
+            Questionarios quests = (Questionarios) object;
+            for(Object [] o : quests.toObjects()){
+                modelo.addRow(o);
+            }
+        }
+    }
 }

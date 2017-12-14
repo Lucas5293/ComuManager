@@ -5,13 +5,15 @@
  */
 package comumanager.view.consulta;
 
+import comumanager.model.objects.Pesquisas;
+import comumanager.view.Observer;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author lucas
  */
-public class ViewConPesquisa extends javax.swing.JPanel {
+public class ViewConPesquisa extends javax.swing.JPanel implements Observer {
 
     /**
      * Creates new form ViewConPesquisa
@@ -109,4 +111,15 @@ public class ViewConPesquisa extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void update(Object object) {
+        if (object.getClass() == Pesquisas.class){
+            modelo.setRowCount(0);
+            Pesquisas pesqs = (Pesquisas) object;
+            for(Object [] o : pesqs.toObjects()){
+                modelo.addRow(o);
+            }
+        }
+    }
 }

@@ -5,7 +5,6 @@
  */
 package comumanager.control;
 
-import comumanager.model.ConfBD;
 import comumanager.model.Database;
 import comumanager.model.Model;
 import java.io.IOException;

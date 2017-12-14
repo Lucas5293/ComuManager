@@ -5,14 +5,17 @@
  */
 package comumanager.model;
 
+import comumanager.control.ControladorDB;
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -30,6 +33,11 @@ public class ConfBD {
             gravarArq.print(info.get("pass"));
             
             arq.close();
+        }
+        try {
+            ControladorDB.getInstance().restart();
+        } catch (SQLException ex) {
+            Logger.getLogger(ConfBD.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

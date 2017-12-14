@@ -5,17 +5,23 @@
  */
 package comumanager.model;
 
+import comumanager.view.Observer;
+import java.util.ArrayList;
+
 /**
  *
  * @author lucas
  */
 public class Model {
-    public ConfBD confBD;
     
     private static Model uniqueInstance;
+    
+    public ConfBD confBD;
+    private ArrayList<Observer> observers;    
 	
     private Model(){
         confBD = new ConfBD();
+        observers = new ArrayList<>();
     }
 	
     public static Model getInstance(){
@@ -23,6 +29,16 @@ public class Model {
                 uniqueInstance = new Model();
             }
             return uniqueInstance;
+    }
+    
+    public void registerObserver(Observer observer){
+        observers.add(observer);
+    }
+	
+    public void notifyObservers(Object object){
+	for(Observer observer:observers){
+            observer.update(object);
+	}
     }
 	
 }
